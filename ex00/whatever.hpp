@@ -34,13 +34,6 @@ T const &max(T const &a, T const &b){
 };
 
 //Template specialization
-template <>
-void swap(std::string &a, std::string &b) {
-
-	std::string temp = a;
-	a = b;
-	b = temp;
-};
 
 template <>
 std::string const &min(std::string const &a, std::string const &b){
