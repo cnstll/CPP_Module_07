@@ -7,11 +7,8 @@ TestClass {
 public:
 TestClass( int nbr=0 ) : _nbr( nbr ) {}
 bool operator==( TestClass const & rhs ) const { return (this->_nbr == rhs._nbr); }
-bool operator!=( TestClass const & rhs ) const{ return (this->_nbr != rhs._nbr); }
 bool operator>( TestClass const & rhs ) const { return (this->_nbr > rhs._nbr); }
 bool operator<( TestClass const & rhs ) const { return (this->_nbr < rhs._nbr); }
-bool operator>=( TestClass const & rhs ) const { return (this->_nbr >= rhs._nbr); }
-bool operator<=( TestClass const & rhs ) const { return (this->_nbr <= rhs._nbr); }
 int getNbr(void) const { return _nbr;};
 private:
 int _nbr;
