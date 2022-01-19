@@ -1,27 +1,43 @@
 #include <iostream>
 #include <cstdlib>
+#include <string>
 #include "Array.hpp"
 
 #define MAX_VAL 750
+
 int main(int, char**)
 {
+    std::cout << "Generating an empty array of string\n";
+    Array<std::string> emptyArr;
+    std::cout << "Trying to access element at index 0 of empty array\n";
+    try
+    {
+        emptyArr[0];
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Exception: " << e.what() << '\n';
+    }
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
+    std::cout << "Generating array of random int..\n";
     for (int i = 0; i < MAX_VAL; i++)
     {
         const int value = rand();
         numbers[i] = value;
         mirror[i] = value;
     }
-    //SCOPE
-    std::cout << "after copy\n";
+    std::cout << "Size of the array is: " << numbers.size() << "\n";
+
+    std::cout << "Done.\n";
+    //std::cout << "Generated array: \n";
+    //numbers.display();
+    std::cout << "Testing for deep copy...\n";
     {
         Array<int> tmp = numbers;
         Array<int> test(tmp);
     }
-    std::cout << "after scope\n";
-
     for (int i = 0; i < MAX_VAL; i++)
     {
         if (mirror[i] != numbers[i])
@@ -30,7 +46,8 @@ int main(int, char**)
             return 1;
         }
     }
-    std::cout << "after check equal\n";
+    std::cout << "Done.\n";
+    std::cout << "Trying to access element at index -2\n";
     try
     {
         numbers[-2] = 0;
@@ -39,6 +56,7 @@ int main(int, char**)
     {
         std::cerr << "Exception: " << e.what() << '\n';
     }
+    std::cout << "Trying to access element at index MAX_VAL\n";
     try
     {
         numbers[MAX_VAL] = 0;
@@ -53,6 +71,6 @@ int main(int, char**)
         numbers[i] = rand();
     }
     delete [] mirror;
-    std::cout << "end of prog\n";
+    std::cout << "End of tests...\n";
     return 0;
 }
