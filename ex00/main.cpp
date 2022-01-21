@@ -9,7 +9,7 @@ class OverComplicatedChar {
         OverComplicatedChar( OverComplicatedChar const &src ) : _thisIsAChar( src.getThisDarnChar() ) {};
         ~OverComplicatedChar(){};
 
-        OverComplicatedChar const &operator= ( OverComplicatedChar const & rhs ) { _thisIsAChar = rhs._thisIsAChar; return *this; };
+        OverComplicatedChar const &operator= ( OverComplicatedChar const & rhs ) { _thisIsAChar = rhs.getThisDarnChar(); return *this; };
 
         char getThisDarnChar(void) const { return _thisIsAChar;};
 
