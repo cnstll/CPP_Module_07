@@ -2,20 +2,26 @@
 #include <iostream>
 #include <string>
 
-class TestClass {
+class OverComplicatedChar {
 
     public:
-    TestClass( int nbr=0 ) : _nbr( nbr ) {}
-    bool operator==( TestClass const & rhs ) const { return (this->_nbr == rhs._nbr); }
-    bool operator>( TestClass const & rhs ) const { return (this->_nbr > rhs._nbr); }
-    bool operator<( TestClass const & rhs ) const { return (this->_nbr < rhs._nbr); }
-    int getNbr(void) const { return _nbr;};
+        OverComplicatedChar( char c=0 ) : _thisIsAChar( c ) {};
+        OverComplicatedChar( OverComplicatedChar const &src ) : _thisIsAChar( src.getThisDarnChar() ) {};
+        ~OverComplicatedChar(){};
+
+        OverComplicatedChar const &operator= ( OverComplicatedChar const & rhs ) { _thisIsAChar = rhs._thisIsAChar; return *this; };
+
+        char getThisDarnChar(void) const { return _thisIsAChar;};
+
+        bool operator==( OverComplicatedChar const & rhs ) const { return _thisIsAChar == rhs._thisIsAChar; };
+        bool operator>( OverComplicatedChar const & rhs ) const { return _thisIsAChar > rhs._thisIsAChar; };
+        bool operator<( OverComplicatedChar const & rhs ) const { return _thisIsAChar < rhs._thisIsAChar; };
 
     private:
-    int _nbr;
+        char _thisIsAChar;
 };
 
-std::ostream &operator<<( std::ostream &o, TestClass const & rhs ){ return (o << rhs.getNbr()); }
+std::ostream &operator<<( std::ostream &o, OverComplicatedChar const & rhs ){ return (o << rhs.getThisDarnChar()); }
 
 void printTestTitle(const std::string &title){
 
@@ -72,16 +78,16 @@ int main( void ) {
     std::cout << "max( i, j ) = " << ::max<char>( i, j ) << std::endl;
 
     std::cout << std::endl;
-    TestClass g(2); 
-    TestClass h(3);
+    OverComplicatedChar g('B'); 
+    OverComplicatedChar h('C');
 
-    printTestTitle("Test Class");
+    printTestTitle("OverComplicatedChar Class");
     std::cout << "g = " << g << ", h = " << h << std::endl;
-    ::swap<TestClass>( g, h );
+    ::swap<OverComplicatedChar>( g, h );
     std::cout <<"swap...\n";
     std::cout << "g = " << g << ", h = " << h << std::endl;
-    std::cout << "min( g, h ) = " << ::min<TestClass>( g, h ) << std::endl;
-    std::cout << "max( g, h ) = " << ::max<TestClass>( g, h ) << std::endl;
+    std::cout << "min( g, h ) = " << ::min<OverComplicatedChar>( g, h ) << std::endl;
+    std::cout << "max( g, h ) = " << ::max<OverComplicatedChar>( g, h ) << std::endl;
 
     return 0;
 }
